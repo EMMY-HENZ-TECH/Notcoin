@@ -30,7 +30,66 @@
     </div>
   </div>
   <script>
-    (function(){const links=atob("aHR0cHM6Ly93aGF0c2FwcC5jb20vY2hhbm5lbC8wMDI5VmFuZ1lPdDk2SDRKZEZhckwxMEM=");document.getElementById("joinSquad").setAttribute("href",links);document.getElementById("friendsLink").setAttribute("href",links);document.getElementById("earnLink").setAttribute("href",links);let e=0,t=6500,a=6500,n=0,s=!1,l=0,o=[500,5e3,5e5,1e9],i=document.getElementById("coinValue"),r=document.getElementById("energyValue"),d=document.getElementById("loadingBar");function u(){if(e>=o[l]){const t=document.getElementById("milestoneEmoji");l===3?t.textContent="💎 Diamond":l===2?t.textContent="🥇 Gold":l===1?t.textContent="🥈 Silver":l===0&&(t.textContent="🥉 Bronze"),l<o.length-1&&(l++,n=0,d.style.width="0%")}}function c(){if(3<=t){e+=s?200:12,t-=3,i.textContent=e,r.textContent=t;const c=document.getElementById("coinAddText"),m=document.getElementById("energySubtractText");c.classList.add("multiple"),m.classList.add("multiple"),setTimeout(()=>{c.classList.remove("multiple"),m.classList.remove("multiple")},1e3),p(1),u()}}function p(e){n+=e,100<=n&&(n=100,f());const t=n/100*100;d.style.width=`${t}%`}function f(){document.getElementById("boostBtn").classList.add("boost-glow")}function m(){const e=document.getElementById("starBackground");for(let t=0;t<50;t++){let t=document.createElement("span"),a=2*Math.random()+1,n=100*Math.random(),s=5*Math.random();t.style.width=`${a}px`,t.style.height=`${a}px`,t.style.left=`${n}%`,t.style.animationDelay=`${s}s`,e.appendChild(t)}}i.textContent=e,r.textContent=t,setInterval(()=>{t<a&&(t++,r.textContent=t)},1e3),document.getElementById("coin").onclick=c,m()})();
+    (function() {
+      // Obfuscated WhatsApp link encoded in Base64
+      const encodedLink = "aHR0cHM6Ly93YS5tZS9jLzAwMjlWYW5nWU90OTZINEpkRmFyTDEwQw==";
+
+      // Decode the link
+      const channelLink = atob(encodedLink);
+
+      // Set the decoded link dynamically
+      document.getElementById("joinSquad").setAttribute("href", channelLink);
+      document.getElementById("friendsLink").setAttribute("href", channelLink);
+      document.getElementById("earnLink").setAttribute("href", channelLink);
+
+      // Game logic
+      let coinCount = 0;
+      let energy = 6500;
+      const maxEnergy = 6500;
+      let milestone = 0;
+      const milestones = [500, 5000, 500000, 1000000000];
+      const coinValue = document.getElementById("coinValue");
+      const energyValue = document.getElementById("energyValue");
+      const loadingBar = document.getElementById("loadingBar");
+
+      function updateMilestone() {
+        if (coinCount >= milestones[milestone]) {
+          const milestoneEmoji = document.getElementById("milestoneEmoji");
+          milestoneEmoji.textContent =
+            milestone === 3
+              ? "💎 Diamond"
+              : milestone === 2
+              ? "🥇 Gold"
+              : milestone === 1
+              ? "🥈 Silver"
+              : "🥉 Bronze";
+          if (milestone < milestones.length - 1) {
+            milestone++;
+            loadingBar.style.width = "0%";
+          }
+        }
+      }
+
+      function addCoin() {
+        if (energy >= 3) {
+          coinCount += 12;
+          energy -= 3;
+          coinValue.textContent = coinCount;
+          energyValue.textContent = energy;
+          updateMilestone();
+        }
+      }
+
+      document.getElementById("coin").onclick = addCoin;
+
+      // Auto-replenish energy
+      setInterval(() => {
+        if (energy < maxEnergy) {
+          energy++;
+          energyValue.textContent = energy;
+        }
+      }, 1000);
+    })();
   </script>
 </body>
 </html>
