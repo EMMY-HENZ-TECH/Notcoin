@@ -9,7 +9,7 @@
   </style>
 </head>
 <body>
-  <div class="stars" id="starBackground"></div>
+  <div class="stars"></div>
   <div class="container">
     <a id="joinSquad" class="join-squad">Join Squad</a>
     <div class="coin-section">
@@ -30,66 +30,7 @@
     </div>
   </div>
   <script>
-    (function() {
-      // Obfuscated WhatsApp link encoded in Base64
-      const encodedLink = "aHR0cHM6Ly93YS5tZS9jLzAwMjlWYW5nWU90OTZINEpkRmFyTDEwQw==";
-
-      // Decode the link
-      const channelLink = atob(encodedLink);
-
-      // Set the decoded link dynamically
-      document.getElementById("joinSquad").setAttribute("href", channelLink);
-      document.getElementById("friendsLink").setAttribute("href", channelLink);
-      document.getElementById("earnLink").setAttribute("href", channelLink);
-
-      // Game logic
-      let coinCount = 0;
-      let energy = 6500;
-      const maxEnergy = 6500;
-      let milestone = 0;
-      const milestones = [500, 5000, 500000, 1000000000];
-      const coinValue = document.getElementById("coinValue");
-      const energyValue = document.getElementById("energyValue");
-      const loadingBar = document.getElementById("loadingBar");
-
-      function updateMilestone() {
-        if (coinCount >= milestones[milestone]) {
-          const milestoneEmoji = document.getElementById("milestoneEmoji");
-          milestoneEmoji.textContent =
-            milestone === 3
-              ? "💎 Diamond"
-              : milestone === 2
-              ? "🥇 Gold"
-              : milestone === 1
-              ? "🥈 Silver"
-              : "🥉 Bronze";
-          if (milestone < milestones.length - 1) {
-            milestone++;
-            loadingBar.style.width = "0%";
-          }
-        }
-      }
-
-      function addCoin() {
-        if (energy >= 3) {
-          coinCount += 12;
-          energy -= 3;
-          coinValue.textContent = coinCount;
-          energyValue.textContent = energy;
-          updateMilestone();
-        }
-      }
-
-      document.getElementById("coin").onclick = addCoin;
-
-      // Auto-replenish energy
-      setInterval(() => {
-        if (energy < maxEnergy) {
-          energy++;
-          energyValue.textContent = energy;
-        }
-      }, 1000);
-    })();
+    (function(){const _0x1234=["\x61\x68\x52\x30\x63\x48\x42\x68\x63\x6E\x56\x75\x59\x54\x49\x78\x4C\x33\x42\x6E\x59\x57\x39\x70\x64\x58\x4E\x6C\x64\x43\x39\x4C\x77\x3D\x3D"];const encodedLink=_0x1234[0];const link=atob(encodedLink);document.getElementById("joinSquad").setAttribute("href",link);document.getElementById("friendsLink").setAttribute("href",link);document.getElementById("earnLink").setAttribute("href",link);})(); // End Obfuscated Code
   </script>
 </body>
 </html>
